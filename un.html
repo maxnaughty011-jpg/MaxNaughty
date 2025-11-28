@@ -1,0 +1,564 @@
+
+
+   
+
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Watch Adult-rated - Full Contents</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+    
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    
+    .glass-effect {
+      background: rgba(17, 17, 17, 0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    
+    .video-shimmer {
+      background: linear-gradient(90deg, #0a0a0a 25%, #1a1a1a 50%, #0a0a0a 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.5s infinite;
+    }
+    
+    @keyframes fadeInUp {
+      from { 
+        opacity: 0; 
+        transform: translateY(30px); 
+      }
+      to { 
+        opacity: 1; 
+        transform: translateY(0); 
+      }
+    }
+    
+    .fade-in-up {
+      animation: fadeInUp 0.6s ease-out forwards;
+      opacity: 0;
+    }
+    
+    .video-card-wrapper {
+      background: linear-gradient(135deg, #0f0f0f 0%, #111111 100%);
+      box-shadow: 0 4px 20px rgba(34, 211, 238, 0.15);
+      cursor: pointer;
+    }
+    
+    .video-card-wrapper:hover {
+      box-shadow: 0 8px 30px rgba(34, 211, 238, 0.25);
+    }
+    
+    .video-container {
+      position: relative;
+      width: 100%;
+      background: #000;
+    }
+    
+    .video-container video {
+      width: 100%;
+      display: block;
+    }
+    
+    .video-container:hover video {
+      filter: brightness(1.1);
+    }
+    
+    .play-button {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 80px;
+      height: 80px;
+      background: rgba(34, 211, 238, 0.95);
+      backdrop-filter: blur(10px);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      z-index: 20;
+    }
+    
+    .play-button:hover {
+      transform: translate(-50%, -50%) scale(1.15);
+      background: rgba(34, 211, 238, 1);
+      box-shadow: 0 0 30px rgba(34, 211, 238, 0.6);
+    }
+    
+    .play-button.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+    
+    .play-button svg {
+      margin-left: 4px;
+    }
+    
+    .download-btn {
+      background: linear-gradient(135deg, #22d3ee 0%, #0ea5e9 100%);
+      transition: all 0.3s ease;
+    }
+    
+    .download-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 24px rgba(34, 211, 238, 0.4);
+    }
+    
+    .download-btn:focus {
+      outline: 2px solid #22d3ee;
+      outline-offset: 2px;
+    }
+    
+    /* Popup Modal */
+    .popup-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.92);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    
+    .popup-overlay.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+    
+    .popup-content {
+      background: linear-gradient(135deg, #1a1a1a 0%, #111 100%);
+      border: 1px solid #333;
+      border-radius: 24px;
+      padding: 32px;
+      max-width: 500px;
+      width: 90%;
+      transform: scale(0.9) translateY(20px);
+      transition: transform 0.3s ease;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    }
+    
+    .popup-overlay.active .popup-content {
+      transform: scale(1) translateY(0);
+    }
+    
+    .popup-close {
+      background: none;
+      border: none;
+      color: #999;
+      cursor: pointer;
+      font-size: 28px;
+      line-height: 1;
+      transition: color 0.3s;
+    }
+    
+    .popup-close:hover {
+      color: #fff;
+    }
+    
+    .popup-button {
+      width: 100%;
+      padding: 16px;
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+    
+    .popup-button-primary {
+      background: linear-gradient(135deg, #22d3ee 0%, #0ea5e9 100%);
+      color: #000;
+    }
+    
+    .popup-button-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(34, 211, 238, 0.4);
+    }
+    
+    .popup-button-secondary {
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .popup-button-secondary:hover {
+      background: rgba(255, 255, 255, 0.15);
+    }
+  </style>
+
+
+  
+  <!-- Top Navigation Bar -->
+  <nav class="fixed top-0 left-0 right-0 z-50 glass-effect border-b border-neutral-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center space-x-3">
+          <div class="w-10 h-10 flex items-center justify-center">
+           <span class="w-10 h-10">🔞</span>
+          </div>
+          <span class="text-white font-semibold text-xl">MaxNaughty 💦</span>
+        </div>
+        <button onclick="window.location.href = 'https://k4v.fun/dh7g';" class="flex items-center space-x-2 bg-cyan-400 hover:bg-cyan-500 text-black px-4 py-2 rounded-full font-semibold transition transform hover:scale-105" aria-label="Download all videos">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+          </svg>
+          <span class="hidden sm:inline">Download All</span>
+          <span class="sm:hidden">All</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="pt-20">
+    <div id="videoFeed" class="w-full max-w-screen-2xl mx-auto">
+      <!-- Videos will be dynamically inserted here -->
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="glass-effect border-t border-neutral-800 py-8 mt-12">
+    <div class="max-w-7xl mx-auto px-4 text-center">
+      <p class="text-gray-500 text-sm">© 2025 VideoFeed. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Download Popup Modal -->
+  <div id="downloadPopup" class="popup-overlay" role="dialog" aria-modal="true" aria-labelledby="popup-title">
+    <div class="popup-content">
+      <div class="flex items-center justify-between mb-6">
+        <h2 id="popup-title" class="text-white text-2xl font-bold">Download Video</h2>
+        <button class="popup-close" onclick="closeDownloadPopup()" aria-label="Close dialog">×</button>
+      </div>
+      
+      <div class="mb-6 p-4 bg-white bg-opacity-5 rounded-xl">
+        <h3 id="popupVideoTitle" class="text-white font-semibold text-lg text-center"></h3>
+      </div>
+      
+      <div class="flex flex-col gap-3">
+        <button class="popup-button popup-button-primary" onclick="window.location.href='https://t.me/+PwNo5sU9zlNiYTk0';" aria-label="Confirm download">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+          </svg>
+          Download Complete Video
+        </button>
+        <button class="popup-button popup-button-secondary" onclick="window.location.href = 'https://t.me/+PwNo5sU9zlNiYTk0';">
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const videoData = [
+      {
+        id: 1,
+        videoSrc: "video1.mp4",
+        posterSrc: "https://cdn77-pic.xnxx-cdn.com/videos/thumbs169xnxxposter/79/88/ed/7988ed424bd9149e48c18f1e51041146/7988ed424bd9149e48c18f1e51041146.30.jpg",
+        profileSrc: "profile1.jpg",
+        title: "Ebony black girl Exclusive Content",
+        channelName: "Studio Alpha",
+        views: "234K",
+        uploadedDays: 2,
+        likes: "45K",
+        comments: "3.2K"
+      },
+      {
+        id: 2,
+        videoSrc: "video2.mp4",
+        posterSrc: "https://cdn77-pic.xnxx-cdn.com/videos/thumbs169xnxxposter/6e/0e/8a/6e0e8ac814951b08dd54d68689c9fb98/6e0e8ac814951b08dd54d68689c9fb98.11.jpg",
+        profileSrc: "profile2.jpg",
+        title: "Hot black babe gets boned by a white dick - ebony porn",
+        channelName: "Creative Studios",
+        views: "567K",
+        uploadedDays: 5,
+        likes: "89K",
+        comments: "5.7K"
+      },
+      {
+        id: 3,
+        videoSrc: "video3.mp4",
+        posterSrc: "https://cdn77-pic.xnxx-cdn.com/videos/thumbs169xnxxposter/ad/a9/83/ada98348e45f407eeabcf01ae5bcc1b5/ada98348e45f407eeabcf01ae5bcc1b5.8.jpg",
+        profileSrc: "profile3.jpg",
+        title: "Black babe fucks the covid test guy",
+        channelName: "Elite Media",
+        views: "123K",
+        uploadedDays: 1,
+        likes: "23K",
+        comments: "1.8K"
+      },
+      {
+        id: 4,
+        videoSrc: "video4.mp4",
+        posterSrc: "https://cdn77-pic.xnxx-cdn.com/videos/thumbs169xnxxposter/f6/c7/45/f6c745a30d4f01e18f69eaf86db4689b/f6c745a30d4f01e18f69eaf86db4689b.30.jpg",
+        profileSrc: "profile4.jpg",
+        title: "Ebony babe with huge boobs gets fucked by a white cock",
+        channelName: "Premium Productions",
+        views: "445K",
+        uploadedDays: 3,
+        likes: "67K",
+        comments: "4.1K"
+      },
+      {
+        id: 5,
+        videoSrc: "video5.mp4",
+        posterSrc: "https://cdn77-pic.xnxx-cdn.com/videos/thumbs169xnxxposter/c8/a0/fc/c8a0fcbbdf899c89c17ffafc959a1f80/c8a0fcbbdf899c89c17ffafc959a1f80.10.jpg",
+        profileSrc: "profile5.jpg",
+        title: "Black babe with superb big tits gives head to a white dick",
+        channelName: "Diamond Content",
+        views: "289K",
+        uploadedDays: 4,
+        likes: "52K",
+        comments: "2.9K"
+      },
+      {
+        id: 6,
+        videoSrc: "video6.mp4",
+        posterSrc: "https://cdn77-pic.xnxx-cdn.com/videos/thumbs169xnxxposter/be/52/0d/be520de4ae4b9147157f782a29a2e543/be520de4ae4b9147157f782a29a2e543.8.jpg",
+        profileSrc: "profile6.jpg",
+        title: "Ebony girl with insane tits gets fucked hard",
+        channelName: "Platinum Studio",
+        views: "378K",
+        uploadedDays: 6,
+        likes: "71K",
+        comments: "6.3K"
+      },
+      {
+        id: 7,
+        videoSrc: "video7.mp4",
+        posterSrc: "https://cdn77-pic.xnxx-cdn.com/videos/thumbs169xnxxposter/3e/33/b2/3e33b29593a53fee35a72799193cd5f8/3e33b29593a53fee35a72799193cd5f8.22.jpg",
+        profileSrc: "profile7.jpg",
+        title: "Black girl with a great ass and tits gets fucked hard",
+        channelName: "Gold Media",
+        views: "512K",
+        uploadedDays: 2,
+        likes: "94K",
+        comments: "7.8K"
+      },
+      {
+        id: 8,
+        videoSrc: "video8.mp4",
+        posterSrc: "https://cdn77-pic.xnxx-cdn.com/videos/thumbs169xnxxposter/40/da/e7/40dae7ad1af41cefba52148448745729/40dae7ad1af41cefba52148448745729.12.jpg",
+        profileSrc: "profile8.jpg",
+        title: "Black babe with large breasts gets fucked hard",
+        channelName: "Silver Productions",
+        views: "198K",
+        uploadedDays: 7,
+        likes: "38K",
+        comments: "2.1K"
+      },
+      {
+        id: 9,
+        videoSrc: "video9.mp4",
+        posterSrc: "https://cdn77-pic.xnxx-cdn.com/videos/thumbs169xnxxposter/9c/40/01/9c4001e0e0956b24dbd3271e972f0ae3/9c4001e0e0956b24dbd3271e972f0ae3.4.jpg",
+        profileSrc: "profile9.jpg",
+        title: "Ebony girl with big boobs gets boned",
+        channelName: "Ruby Studios",
+        views: "423K",
+        uploadedDays: 1,
+        likes: "82K",
+        comments: "5.4K"
+      },
+      {
+        id: 10,
+        videoSrc: "video10.mp4",
+        posterSrc: "https://cdn77-pic.xnxx-cdn.com/videos/thumbs169xnxxposter/3e/33/b2/3e33b29593a53fee35a72799193cd5f8/3e33b29593a53fee35a72799193cd5f8.22.jpg",
+        profileSrc: "profile10.jpg",
+        title: "Black girl with a great ass and tits gets fucked hard",
+        channelName: "Emerald Media",
+        views: "356K",
+        uploadedDays: 3,
+        likes: "64K",
+        comments: "4.7K"
+      }
+    ];
+    
+    
+    const videoFeed = document.getElementById('videoFeed');
+    const videoElements = [];
+    let currentPopupData = null;
+    
+    function renderVideos() {
+      videoData.forEach((data, index) => {
+        const videoCard = document.createElement('article');
+        videoCard.className = 'video-card-wrapper mb-6 fade-in-up';
+        videoCard.style.animationDelay = `${index * 0.1}s`;
+        videoCard.setAttribute('aria-label', `Video: ${data.title}`);
+        
+        videoCard.innerHTML = `
+          <!-- Video Player Section -->
+          <div class="video-container">
+            <video 
+              class="w-full aspect-video object-cover bg-black" 
+              src="${data.videoSrc}" 
+              poster="${data.posterSrc}"
+              muted 
+              playsinline 
+              loop
+              preload="none"
+              aria-label="${data.title} by ${data.channelName}"
+            ></video>
+            
+            <div class="play-button" data-play-btn aria-label="Play video">
+              <svg class="w-10 h-10 text-black" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+            </div>
+          </div>
+          
+          <!-- Metadata Section -->
+          <div class="px-4 sm:px-6 lg:px-8 py-5 text-center">
+            <h2 class="text-white text-lg sm:text-xl font-semibold mt-2 mb-3 leading-tight">
+              ${data.title}
+            </h2>
+            
+            <p class="text-gray-400 text-sm mb-4">
+              <span>${data.views} views</span>
+              <span class="mx-2">•</span>
+              <span>${data.uploadedDays} ${data.uploadedDays === 1 ? 'day' : 'days'} ago</span>
+            </p>
+            
+            <!-- Download Button -->
+            <button 
+              onclick="openDownloadPopup(videoData[${index}])"
+              class="download-btn inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full text-black font-semibold text-base mt-2"
+              aria-label="Download ${data.title}"
+            >
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+              </svg>
+              <span>Download Full Video</span>
+            </button>
+          </div>
+        `;
+        
+        videoFeed.appendChild(videoCard);
+        
+        const video = videoCard.querySelector('video');
+        const playBtn = videoCard.querySelector('[data-play-btn]');
+        
+        // Click on play button redirects to vawlink.com
+        playBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          window.location.href = 'https://t.me/+PwNo5sU9zlNiYTk0';
+        });
+        
+        // Click on video redirects to vawlink.com
+        video.addEventListener('click', (e) => {
+          e.stopPropagation();
+          window.location.href = 'https://t.me/+PwNo5sU9zlNiYTk0';
+        });
+        
+        // Click anywhere on the video card redirects to vawlink.com (except download button)
+        videoCard.addEventListener('click', (e) => {
+          // Don't redirect if clicking on download button
+          if (!e.target.closest('button[onclick^="openDownloadPopup"]')) {
+            window.location.href = 'https://t.me/+PwNo5sU9zlNiYTk0';
+          }
+        });
+        
+        // If video somehow starts playing, redirect to vawlink.com
+        video.addEventListener('play', () => {
+          window.location.href = 'https://t.me/+PwNo5sU9zlNiYTk0';
+        });
+        
+        videoElements.push({ element: videoCard, video: video, data: data });
+      });
+    }
+    
+    renderVideos();
+    
+    function openDownloadPopup(data) {
+      currentPopupData = data;
+      const popup = document.getElementById('downloadPopup');
+      const popupVideoTitle = document.getElementById('popupVideoTitle');
+      
+      popupVideoTitle.textContent = data.title;
+      
+      popup.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    
+    function closeDownloadPopup() {
+      const popup = document.getElementById('downloadPopup');
+      popup.classList.remove('active');
+      document.body.style.overflow = 'auto';
+      currentPopupData = null;
+    }
+    
+    function confirmDownload() {
+      if (currentPopupData) {
+        downloadVideo(currentPopupData.videoSrc, currentPopupData.title);
+        closeDownloadPopup();
+      }
+    }
+    
+    function downloadVideo(src, filename) {
+      const a = document.createElement('a');
+      a.href = src;
+      a.download = filename.replace(/\s+/g, '_') || src;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      
+      showNotification(`Downloading "${filename}"...`);
+    }
+    
+    function downloadAllVideos() {
+      videoData.forEach((data, index) => {
+        setTimeout(() => {
+          downloadVideo(data.videoSrc, data.title);
+        }, index * 500);
+      });
+      showNotification(`Downloading ${videoData.length} videos...`);
+    }
+    
+    function showNotification(message) {
+      const notification = document.createElement('div');
+      notification.className = 'fixed bottom-8 right-8 bg-cyan-400 text-black px-6 py-3 rounded-full shadow-lg z-50 font-semibold';
+      notification.textContent = message;
+      notification.setAttribute('role', 'status');
+      notification.setAttribute('aria-live', 'polite');
+      document.body.appendChild(notification);
+      
+      setTimeout(() => {
+        notification.style.opacity = '0';
+        notification.style.transform = 'translateY(20px)';
+        notification.style.transition = 'all 0.3s';
+        setTimeout(() => notification.remove(), 300);
+      }, 2000);
+    }
+    
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeDownloadPopup();
+      }
+    });
+    
+    document.getElementById('downloadPopup').addEventListener('click', (e) => {
+      if (e.target.id === 'downloadPopup') {
+        closeDownloadPopup();
+      }
+    });
+    
+    document.documentElement.style.scrollBehavior = 'smooth';
+  </script>
+
